@@ -6,17 +6,26 @@ import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 
+// ✅ Root route for testing
+app.get("/", (req, res) => {
+  res.send("Backend is up and running!");
+});
+
 // ✅ CORS origin check
 console.log(
   `[CORS Verification] The server is about to configure CORS for origin: ${process.env.CORS_ORIGIN}`
 );
- 
+
 // ✅ CORS middleware (corrected and complete)
 const allowedOrigins = [
   "http://localhost:3000",
   "https://vedant-fe.vercel.app",
   "https://www.vedantgurukul.com",
-  "https://vedantgurukul.com"
+  "https://vedantgurukul.com",
+  "https://vedant-frontend.vercel.app",
+  "https://vedant-frontend.vercel.app/",
+  "http://vedant-frontend.vercel.app",
+  "http://vedant-frontend.vercel.app/"
 ];
 
 app.use(cors({
