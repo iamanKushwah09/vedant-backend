@@ -6,6 +6,9 @@ import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 
+// ✅ Trust proxy for secure cookies behind Vercel/proxies
+app.set("trust proxy", 1);
+
 // ✅ Root route for testing
 app.get("/", (req, res) => {
   res.send("Backend is up and running!");
@@ -19,13 +22,11 @@ console.log(
 // ✅ CORS middleware (corrected and complete)
 const allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost:3001",
   "https://vedant-fe.vercel.app",
   "https://www.vedantgurukul.com",
   "https://vedantgurukul.com",
-  "https://vedant-frontend.vercel.app",
-  "https://vedant-frontend.vercel.app/",
-  "http://vedant-frontend.vercel.app",
-  "http://vedant-frontend.vercel.app/"
+  "https://vedant-frontend.vercel.app"
 ];
 
 app.use(cors({
