@@ -9,7 +9,7 @@ const generateOtp = () =>
   Math.floor(100000 + Math.random() * 900000).toString();
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password,phone ,role } = req.body;
+  const { name, email, password, phone, role } = req.body;
 
   if ([name, email, password].some((field) => !field || field.trim() === "")) {
     throw new ApiError(400, "Name, email, phone and password are required");
@@ -76,7 +76,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
   user.otp = undefined;
   user.otpExpiry = undefined;
   await user.save({ validateBeforeSave: false });
-  
+
 
   const accessToken = user.generateAccessToken();
   console.log("this is access token ", accessToken)
@@ -85,7 +85,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none" 
+    sameSite: "none"
   };
 
   return res
