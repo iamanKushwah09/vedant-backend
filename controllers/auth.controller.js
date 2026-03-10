@@ -116,7 +116,7 @@ const loginUser = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   };
-
+  console.log({ options })
   return res.status(200).cookie("accessToken", accessToken, options)
     .json(new ApiResponse(200, { user: loggedInUser, accessToken }, "User logged in successfully"));
 });
